@@ -18,17 +18,28 @@ Learning React and ES6 by building a Movie Discovery App.
 
 ## API Verbas
 
-- [ ] Movies_Now Playing
-- [ ] Movies_Upcoming
-- [ ] Movies & TV_Top Rated
-- [ ] Movies & TV_Popular
+- [x] Now Playing (Movies)
+- [x] Upcoming (Movies)
+- [x] Top Rated (Movies & TV)
+- [x] Popular (Movies & TV)
+
   > Query String  
   > api_key(req)  
   > language & page & region(option)
-- [ ] TV_Airing Today
+
+- [x] Airing Today (TV)
+
   > Query String  
   > api_key(req)  
   > language & page(option)
+
+- [ ] Details (Movies & TV)
+
+  > Path Params  
+  > id(req)  
+  > Qurey String  
+  > api_key(req)  
+  > language & append_to_response(option)
 
 # Networking[4.0]
 
