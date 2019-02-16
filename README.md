@@ -9,12 +9,26 @@ Learning React and ES6 by building a Movie Discovery App.
   &  
   "linebreak-style": 0
 
-### Screens (Routes)
+## Screens (Routes)
 
 - [ ] Home
 - [ ] TV Shows
 - [ ] Search
 - [ ] Detail
+
+## API Verbas
+
+- [ ] Movies_Now Playing
+- [ ] Movies_Upcoming
+- [ ] Movies & TV_Top Rated
+- [ ] Movies & TV_Popular
+  > Query String  
+  > api_key(req)  
+  > language & page & region(option)
+- [ ] TV_Airing Today
+  > Query String  
+  > api_key(req)  
+  > language & page(option)
 
 # Networking[4.0]
 
@@ -22,6 +36,15 @@ Learning React and ES6 by building a Movie Discovery App.
 
 - https://www.themoviedb.org/  
   API key3 발급
+
+- API로 부터 가져올 수 있는 것
+
+- API를 통해 가져올 것(내가 필요한 것)
+
+### Axios
+
+- Axios의 instance를 설정함 (기본값, 중복을 방지할 수 있음)  
+   https://www.npmjs.com/package/axios#axioscreateconfig
 
 # Styles[3.0]
 
