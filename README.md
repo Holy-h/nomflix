@@ -16,6 +16,13 @@ Learning React and ES6 by building a Movie Discovery App.
 - [ ] Search
 - [ ] Detail
 
+# Networking[4.0]
+
+### Movie API Source
+
+- https://www.themoviedb.org/  
+  API key3 발급
+
 # Styles[3.0]
 
 ### React로 Style 작업하는 방법
