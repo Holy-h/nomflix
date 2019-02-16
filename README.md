@@ -25,21 +25,27 @@ Learning React and ES6 by building a Movie Discovery App.
 
   > Query String  
   > api_key(req)  
-  > language & page & region(option)
+  > language(option)
 
 - [x] Airing Today (TV)
 
   > Query String  
   > api_key(req)  
-  > language & page(option)
+  > language(option)
 
-- [ ] Details (Movies & TV)
+- [x] Details (Movies & TV)
 
   > Path Params  
   > id(req)  
   > Qurey String  
   > api_key(req)  
   > language & append_to_response(option)
+
+- [x] Search (Movies & TV)
+
+  > Query String  
+  > api_key & query(req)  
+  > language (option)
 
 # Networking[4.0]
 
