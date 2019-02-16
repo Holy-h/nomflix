@@ -52,6 +52,21 @@ Learning React and ES6 by building a Movie Discovery App.
   1. className을 기억해야 함(js, css 분리)
   2. "-"를 className으로 사용할 수 없음
 
+#### 해결책 2. styled-components
+
+- 취지: js 내부에 style하도록 함
+
+- 사용법
+
+  1.  npm install styled-components
+  2.  Header.js  
+      import styled from "styled-components"
+  3.  html 태그에 styled를 입혀 새로운 태그로 만든다. (이게 핵심)
+  4.  기본 html 태그 대신 styled 태그를 사용한다.
+
+- 기타  
+   a tag 대신에 react-router-dom에 있는 Link를 사용하면, 페이지 내부에서 이동할 때 새로고침 없이 이동이 가능함
+
 # Project Setup[2.0]
 
 ### HashRouter & BrowserRouter
