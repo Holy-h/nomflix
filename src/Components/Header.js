@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import styled from "styled-components";
 
 const Header = styled.header`
@@ -9,11 +9,10 @@ const Header = styled.header`
   left: 0;
   z-index: 10;
   width: 100%;
-  height: 40px;
+  height: 50px;
   font-size: 18px;
   display: flex;
   align-items: center;
-  padding: 0px 16px;
   background-color: rgba(20, 20, 20, 0.7);
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
 `;
@@ -23,32 +22,32 @@ const List = styled.ul`
 `;
 
 const Item = styled.li`
-  /* &:not(:last-child) {
-    margin-right: 16px;
-  } */
   width: 80px;
+  height: 50px;
   text-align: center;
+  border-bottom: 2px solid ${props => (props.current ? "red" : "transparent")};
+  transition: border-bottom 0.3s ease-in-out;
 `;
 
 const SLink = styled(Link)`
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 40px;
+  height: 50px;
 `;
 
-export default () => (
+export default withRouter(({ location: { pathname } }) => (
   <Header>
     <List>
-      <Item>
+      <Item current={pathname === "/"}>
         <SLink to="/">Movies</SLink>
       </Item>
-      <Item>
+      <Item current={pathname === "/tv"}>
         <SLink to="/tv">TV</SLink>
       </Item>
-      <Item>
+      <Item current={pathname === "/search"}>
         <SLink to="/search">Search</SLink>
       </Item>
     </List>
   </Header>
-);
+));

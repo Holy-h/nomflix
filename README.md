@@ -69,6 +69,14 @@ Learning React and ES6 by building a Movie Discovery App.
 
 ### Styled-reset (css 초기화)
 
+### Styled-components
+
+1. style에 props를 가지고 조건문을 수행할 수 있음
+
+### WithRouter
+
+- withRouter로 감싸면 props를 사용할 수 있음
+
 # Project Setup[2.0]
 
 ### HashRouter & BrowserRouter
