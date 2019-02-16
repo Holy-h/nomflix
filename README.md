@@ -67,6 +67,8 @@ Learning React and ES6 by building a Movie Discovery App.
 - 기타  
    a tag 대신에 react-router-dom에 있는 Link를 사용하면, 페이지 내부에서 이동할 때 새로고침 없이 이동이 가능함
 
+### Styled-reset (css 초기화)
+
 # Project Setup[2.0]
 
 ### HashRouter & BrowserRouter
