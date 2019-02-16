@@ -35,7 +35,22 @@ Learning React and ES6 by building a Movie Discovery App.
      import를 해줘야 함  
      className을 기억해줘야 함(css가 프로젝트 내에서 global하게 다뤄지기 때문에 다른 것과 중복될 수 있음)
 
-> css가 컴포넌트 안에서만 동작할 수 있으면 좋겠다.
+#### 해결책 1. CSS Module
+
+- 취지: global css > local css (중복되는 문제 해결)
+
+- 사용법
+
+  1. css파일의 이름을 [Header.module.css]로 변경한다.
+  2. Header.js  
+     import Styles from "./Header.module.css"
+  3. 적용 시킬 태그  
+     className = {styles.navList}
+
+- 문제점
+
+  1. className을 기억해야 함(js, css 분리)
+  2. "-"를 className으로 사용할 수 없음
 
 # Project Setup[2.0]
 
