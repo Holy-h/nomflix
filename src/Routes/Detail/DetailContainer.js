@@ -30,15 +30,16 @@ export default class extends React.Component {
     }
     let result = null;
     try {
-      // const { data: result } = isMovie
-      //   ? await moviesApi.movieDetail(parsedId)
-      //   : await tvApi.showDetail(parsedId);
+      const { data } = isMovie
+        ? await moviesApi.movieDetail(parsedId)
+        : await tvApi.showDetail(parsedId);
+      result = data;
 
-      if (isMovie) {
-        ({ data: result } = await moviesApi.movieDetail(parsedId));
-      } else {
-        ({ data: result } = await tvApi.showDetail(parsedId));
-      }
+      // if (isMovie) {
+      //   ({ data: result } = await moviesApi.movieDetail(parsedId));
+      // } else {
+      //   ({ data: result } = await tvApi.showDetail(parsedId));
+      // }
       console.log(result);
     } catch {
       this.setState({
