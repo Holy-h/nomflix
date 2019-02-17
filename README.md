@@ -55,6 +55,8 @@ Learning React and ES6 by building a Movie Discovery App.
 
 - 컨셉 자체는 Wetube때랑 비슷한듯 (Container & View)
 
+###
+
 # Networking[4.0]
 
 ### Movie API Source
@@ -153,6 +155,16 @@ Learning React and ES6 by building a Movie Discovery App.
   Route가 겹치더라도 상위 주소 하나만 실행되도록 함  
   ex) "/tv/popular"로 접속하더라도, "/tv"로 이동  
   "/tv"에 'exact' option을 넣으면 "/tv/popular"로 이동할 수 있음
+
+### Route
+
+- react
+
+  > \</Route path="/show/:id" component={Detail}\>
+
+- js
+
+  > videoRouter.get(routes.videoDetail(), videoDetail);
 
 ### Redirect
 
