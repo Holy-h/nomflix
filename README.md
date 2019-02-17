@@ -55,7 +55,29 @@ Learning React and ES6 by building a Movie Discovery App.
 
 - 컨셉 자체는 Wetube때랑 비슷한듯 (Container & View)
 
-###
+### Router & Route
+
+Router가 Route에게 기본적인 정보를 props로 전달함
+
+> \<Router>  
+> \<>  
+> \<Header />  
+> \<Switch>  
+> \<Route path="/" exact component={Home} />  
+> \<Route path="/tv" component={TV} />  
+> \<Route path="/search" component={Search} />  
+> \<Route path="/movie/:id" component={Detail} />  
+> \<Route path="/show/:id" component={Detail} />  
+> \<Redirect from="\*" to="/" />  
+> \</Switch>  
+> \</>  
+> \</Router>
+
+### DetailContainer
+
+- ':[params_name]'
+
+> \<Route path="/movie/:id" component={Detail} />
 
 # Networking[4.0]
 
