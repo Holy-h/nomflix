@@ -47,6 +47,14 @@ Learning React and ES6 by building a Movie Discovery App.
   > api_key & query(req)  
   > language (option)
 
+# Containers[5.0]
+
+### 컨셉
+
+- Router별 Api를 불러와서(Container) 화면을 구성(Presenter)하는 부분을 분리한다.
+
+- 컨셉 자체는 Wetube때랑 비슷한듯 (Container & View)
+
 # Networking[4.0]
 
 ### Movie API Source
