@@ -55,9 +55,9 @@ export default class extends React.Component {
         movieResults={movieResults}
         tvResults={tvResults}
         searchTerm={searchTerm}
+        handleSubmit={this.handleSubmit}
         error={error}
         loading={loading}
-        handleSubmit={this.handleSubmit}
       />
     );
   }
