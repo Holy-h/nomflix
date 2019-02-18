@@ -53,7 +53,7 @@ export default class extends React.Component {
       loading,
     } = this.state;
 
-    // console.log(this.state);
+    console.log(this.state);
 
     return (
       <HomePresenter
