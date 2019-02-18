@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import Section from "Components/Section";
 import Loader from "Components/Loader";
+import Message from "../../Components/Message";
 
 const Container = styled.div`
   padding: 0px 16px;
@@ -48,6 +49,7 @@ const HomePresenter = ({
           ))}
         </Section>
       )}
+      {error && <Message color="#e30000" text={error} />}
     </Container>
   );
 
