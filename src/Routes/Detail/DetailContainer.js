@@ -40,7 +40,7 @@ export default class extends React.Component {
       // } else {
       //   ({ data: result } = await tvApi.showDetail(parsedId));
       // }
-      console.log(result);
+      // console.log(result);
     } catch {
       this.setState({
         error: "Can't find this movie & tv",
@@ -58,7 +58,7 @@ export default class extends React.Component {
 
     // console.log(this.props);
     // console.log(this.state);
-    console.log(result);
+    // console.log(result);
 
     return <DetailPresenter result={result} error={error} loading={loading} />;
   }
