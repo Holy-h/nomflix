@@ -43,7 +43,7 @@ export default class extends React.Component {
       // console.log(result);
     } catch {
       this.setState({
-        error: "Can't find this movie & tv",
+        error: "Can't find this movie or tv show",
       });
     } finally {
       this.setState({
