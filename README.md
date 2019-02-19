@@ -2,6 +2,13 @@
 
 Learning React and ES6 by building a Movie Discovery App.
 
+# Code Challenges
+
+- [ ] IMDB Link 넘어가기
+- [ ] Tab 구성 (Youtube 영상, 기타 정보)
+- [ ] Movie Collections
+- [ ] TV Show Seasons
+
 # Setting
 
 - ESLint & Prettier  
@@ -11,10 +18,10 @@ Learning React and ES6 by building a Movie Discovery App.
 
 ## Screens (Routes)
 
-- [ ] Home
-- [ ] TV Shows
-- [ ] Search
-- [ ] Detail
+- [x] Home
+- [x] TV Shows
+- [x] Search
+- [x] Detail
 
 ## API Verbas
 
