@@ -4,6 +4,7 @@ import styled from "styled-components";
 import Helmet from "react-helmet";
 import Loader from "../../Components/Loader";
 import Message from "../../Components/Message";
+import Video from "../../Components/Video";
 
 const Container = styled.div`
   height: calc(100vh - 50px);
@@ -23,7 +24,6 @@ const Backdrop = styled.div`
   background-size: cover;
   filter: blur(1px);
   opacity: 0.3;
-  z-index: 0;
 `;
 
 const Content = styled.div`
@@ -45,6 +45,8 @@ const Cover = styled.div`
 const Data = styled.div`
   width: 70%;
   margin-left: 10px;
+  z-index: 1;
+  overflow: auto;
 `;
 
 const Title = styled.h1`
@@ -68,6 +70,7 @@ const Divider = styled.span`
 const Overview = styled.p`
   line-height: 1.5;
   width: 70%;
+  margin-bottom: 40px;
 `;
 
 const DetailPresenter = ({ result, error, loading }) => (
@@ -132,6 +135,7 @@ const DetailPresenter = ({ result, error, loading }) => (
               </Info>
             </InfoContainer>
             <Overview>{result.overview}</Overview>
+            <Video video={result.videos.results} />
           </Data>
         </Content>
       </Container>
