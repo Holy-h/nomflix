@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import Message from "./Message";
 
 const Container = styled.div`
   display: grid;
@@ -48,6 +49,7 @@ const Video = ({ video }) => (
           </Videodiv>
         </VideoContainer>
       ))}
+    {video.length < 1 && <Message text={`예고편이 없습니다`} />}
   </Container>
 );
 
