@@ -28,7 +28,7 @@
       "react-app",
       "prettier"
     ],
-    "homepage": "https://",
+    "homepage": "https:// ",
     "rules": {
       "react/prefer-stateless-function": 0,
       "react/jsx-filename-extension": 0,
