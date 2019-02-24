@@ -28,7 +28,6 @@
       "react-app",
       "prettier"
     ],
-    "homepage": "https://Holy-h.github.io/nomflix",
     "rules": {
       "react/prefer-stateless-function": 0,
       "react/jsx-filename-extension": 0,
