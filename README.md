@@ -2,12 +2,16 @@
 
 Learning React and ES6 by building a Movie Discovery App.
 
+# Previews:
+
+[netlify](https://thirsty-gates-662619.netlify.com/#/)
+
 # Code Challenges
 
-- [ ] IMDB Link 넘어가기
-- [ ] Tab 구성 (Youtube 영상, 기타 정보)
-- [ ] Movie Collections
-- [ ] TV Show Seasons
+- [x] IMDB Link 넘어가기
+- [x] Tab 구성 (Youtube 영상, 기타 정보)
+- [x] Movie Collections
+- [x] TV Show Seasons
 
 # Setting
 

@@ -122,14 +122,13 @@ const DetailPresenter = ({
             <InfoContainer>
               <Info>
                 {result.release_date
-                  ? result.release_date.substring(0, 4)
+                  ? `${result.release_date.substring(0, 4)} ⦁ `
                   : result.seasons.map((item, index) =>
-                      index !== result.seasons.length - 1
-                        ? `${item.air_date.substring(0, 4)} & `
-                        : item.air_date.substring(0, 4),
+                      index !== result.seasons.length - 1 && item.air_date
+                        ? `${item.air_date.substring(0, 4)} ⦁ `
+                        : null,
                     )}
               </Info>
-              <Divider>⦁</Divider>
               <Info>
                 {result.runtime ? result.runtime : result.episode_run_time[0]}{" "}
                 min

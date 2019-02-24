@@ -21,7 +21,7 @@ const SectionDiv = styled.div`
 
 const CompaniesDiv = styled.div`
   display: grid;
-  grid-template-columns: 1fr 4fr;
+  grid-template-columns: 1fr 1fr;
   grid-gap: 16px;
 `;
 
@@ -32,13 +32,14 @@ const Logo = styled.div`
   background-size: cover;
   background-position: center center;
   background-color: #ffffff;
+  margin-bottom: 16px;
 `;
 
 const CollectionDiv = styled.div`
   display: grid;
-  grid-template-columns: 1fr 4fr;
+  grid-template-columns: 2fr 3fr;
   grid-gap: 16px;
-  grid-template-rows: 300px;
+  grid-template-rows: 400px;
   align-items: center;
 `;
 
@@ -55,8 +56,6 @@ const Text = styled.span`
 
 const DetailInfo = ({ Data, isMovie }) => (
   <Container>
-    {console.log(Data)}
-    {console.log(isMovie)}
     {Data.homepage ? (
       <SectionDiv>
         <SectionTitle>Homepage</SectionTitle>
@@ -72,17 +71,16 @@ const DetailInfo = ({ Data, isMovie }) => (
         <SectionTitle>Production_Companies</SectionTitle>
         <CompaniesDiv>
           {Data.production_companies.map(item => (
-            <>
+            <div key={item.id}>
               <Logo
-                key={item.id}
                 Url={
                   item.logo_path
                     ? `https://image.tmdb.org/t/p/w300${item.logo_path}`
                     : require("../assets/noPosterSmall.png")
                 }
               />
-              <Text key={item.id}>{item.name}</Text>
-            </>
+              <Text>{item.name}</Text>
+            </div>
           ))}
         </CompaniesDiv>
       </SectionDiv>
