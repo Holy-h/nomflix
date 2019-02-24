@@ -13,7 +13,7 @@ export default class extends React.Component {
       error: null,
       loading: true,
       isMovie: pathname.includes("/movie/"),
-      isPreview: false,
+      isPreview: true,
     };
   }
 

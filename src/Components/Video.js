@@ -5,9 +5,14 @@ import Message from "./Message";
 
 const Container = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr;
+
+  grid-template-columns: 1fr;
   grid-gap: 20px;
   margin-top: 16px;
+
+  @media only screen and (min-width: 980px) {
+    grid-template-columns: 1fr 1fr;
+  }
 `;
 
 const VideoContainer = styled.div`
@@ -46,11 +51,7 @@ const Video = ({ video }) => (
             <VideoThumbnail
               src={`https://img.youtube.com/vi/${item.key}/0.jpg`}
             />
-            <VideoPlayer
-              src={`https://www.youtube.com/v/${item.key}`}
-              frameborder="0"
-              allowfullscreen="true"
-            />
+            <VideoPlayer src={`https://www.youtube.com/embed/${item.key}`} />
           </Videodiv>
         </VideoContainer>
       ))}

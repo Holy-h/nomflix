@@ -45,7 +45,7 @@ const Cover = styled.div`
 
 const Data = styled.div`
   width: 70%;
-  margin-left: 10px;
+  margin-left: 24px;
   z-index: 1;
   overflow: auto;
 `;
@@ -145,7 +145,9 @@ const DetailPresenter = ({
               </Info>
             </InfoContainer>
             <Overview>{result.overview}</Overview>
-            <VideoTab onClick={handleClick}>{`Preview ${isPreview}`}</VideoTab>
+            <VideoTab onClick={handleClick}>
+              {isPreview ? `상세정보` : `예고편`}
+            </VideoTab>
             {isPreview ? (
               <Video video={result.videos.results} />
             ) : (

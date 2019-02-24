@@ -14,35 +14,32 @@ const SectionTitle = styled.h1`
   margin-bottom: 16px;
 `;
 
-const SectionDiv = styled.div``;
-
-const Homepage = styled.span`
+const SectionDiv = styled.div`
   display: flex;
   flex-direction: column;
 `;
 
 const CompaniesDiv = styled.div`
-  display: flex;
-  align-items: center;
-  &:not(:last-child) {
-    margin-bottom: 16px;
-  }
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  grid-gap: 16px;
 `;
 
 const Logo = styled.div`
   background-image: url(${props => props.Url});
-  width: 200px;
+  width: 100%;
   height: 48px;
   background-size: cover;
   background-position: center center;
   background-color: #ffffff;
-  margin-right: 16px;
 `;
 
 const CollectionDiv = styled.div`
   display: grid;
   grid-template-columns: 1fr 4fr;
+  grid-gap: 16px;
   grid-template-rows: 300px;
+  align-items: center;
 `;
 
 const CollectionPoster = styled.div`
@@ -52,37 +49,44 @@ const CollectionPoster = styled.div`
   background-position: center center;
 `;
 
-const Companies = styled.span`
-  font-size: 16px;
+const Text = styled.span`
+  font-size: 18px;
 `;
 
 const DetailInfo = ({ Data, isMovie }) => (
   <Container>
-    <SectionDiv>
-      {console.log(Data)}
-      {console.log(isMovie)}
-      <Homepage>
+    {console.log(Data)}
+    {console.log(isMovie)}
+    {Data.homepage ? (
+      <SectionDiv>
         <SectionTitle>Homepage</SectionTitle>
         <a href={Data.homepage}>{Data.homepage}</a>
-      </Homepage>
-    </SectionDiv>
-    <SectionDiv>
-      <SectionTitle>Production_Companies</SectionTitle>
-      {Data.production_companies.length < 1
-        ? `제작 회사 정보가 없습니다`
-        : Data.production_companies.map(item => (
-            <CompaniesDiv key={item.id}>
+      </SectionDiv>
+    ) : (
+      <></>
+    )}
+    {Data.production_companies.length < 1 ? (
+      <></>
+    ) : (
+      <SectionDiv>
+        <SectionTitle>Production_Companies</SectionTitle>
+        <CompaniesDiv>
+          {Data.production_companies.map(item => (
+            <>
               <Logo
+                key={item.id}
                 Url={
                   item.logo_path
                     ? `https://image.tmdb.org/t/p/w300${item.logo_path}`
                     : require("../assets/noPosterSmall.png")
                 }
               />
-              <Companies>{item.name}</Companies>
-            </CompaniesDiv>
+              <Text key={item.id}>{item.name}</Text>
+            </>
           ))}
-    </SectionDiv>
+        </CompaniesDiv>
+      </SectionDiv>
+    )}
     {isMovie && Data.belongs_to_collection ? (
       <SectionDiv>
         <SectionTitle>Movie Collection</SectionTitle>
@@ -96,7 +100,7 @@ const DetailInfo = ({ Data, isMovie }) => (
                 : require("../assets/noPosterSmall.png")
             }
           />
-          <CompaniesDiv>{Data.belongs_to_collection.name}</CompaniesDiv>
+          <Text>{Data.belongs_to_collection.name}</Text>
         </CollectionDiv>
       </SectionDiv>
     ) : (
@@ -107,7 +111,7 @@ const DetailInfo = ({ Data, isMovie }) => (
         <SectionTitle>TV Seasons</SectionTitle>
         <CompaniesDiv>
           {Data.seasons.map(item => (
-            <Companies key={item.id}>{item.name}</Companies>
+            <Text key={item.id}>{item.name}</Text>
           ))}
         </CompaniesDiv>
       </SectionDiv>
