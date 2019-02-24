@@ -38,7 +38,7 @@ const Video = ({ video }) => (
   <Container>
     {video &&
       video.map(item => (
-        <VideoContainer>
+        <VideoContainer key={item.key}>
           <VideoTitle>{item.name}</VideoTitle>
           <Videodiv>
             <VideoThumbnail
@@ -52,7 +52,7 @@ const Video = ({ video }) => (
 );
 
 Video.propTypes = {
-  video: PropTypes.object,
+  video: PropTypes.array,
 };
 
 export default Video;

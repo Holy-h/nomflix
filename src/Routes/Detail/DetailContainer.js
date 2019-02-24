@@ -34,13 +34,6 @@ export default class extends React.Component {
         ? await moviesApi.movieDetail(parsedId)
         : await tvApi.showDetail(parsedId);
       result = data;
-
-      // if (isMovie) {
-      //   ({ data: result } = await moviesApi.movieDetail(parsedId));
-      // } else {
-      //   ({ data: result } = await tvApi.showDetail(parsedId));
-      // }
-      // console.log(result);
     } catch {
       this.setState({
         error: "Can't find this movie or tv show",
@@ -56,16 +49,6 @@ export default class extends React.Component {
   render() {
     const { result, error, loading } = this.state;
 
-    // console.log(this.props);
-    // console.log(this.state);
-    // console.log(result);
-
     return <DetailPresenter result={result} error={error} loading={loading} />;
   }
 }
-
-/* To-Do
-  1. is id number?
-  2. "/movie/:id" or "/tv/:id"
-  3. what is the id?
-*/
