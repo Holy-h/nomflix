@@ -36,6 +36,7 @@
       "import/no-unresolved": 0
     }
   },
+  "homepage": "https://thirsty-gates-662619.netlify.com",
   "browserslist": [
     ">0.2%",
     "not dead",
