@@ -5,6 +5,7 @@ import Helmet from "react-helmet";
 import Loader from "../../Components/Loader";
 import Message from "../../Components/Message";
 import Video from "../../Components/Video";
+import DetailInfo from "../../Components/DetailInfo";
 
 const Container = styled.div`
   height: calc(100vh - 50px);
@@ -73,7 +74,7 @@ const Overview = styled.p`
   margin-bottom: 40px;
 `;
 
-const VideoCreateBtn = styled.button``;
+const VideoTab = styled.button``;
 
 const DetailPresenter = ({
   result,
@@ -81,6 +82,7 @@ const DetailPresenter = ({
   loading,
   handleClick,
   isPreview,
+  isMovie,
 }) => (
   <>
     <Helmet>
@@ -143,13 +145,11 @@ const DetailPresenter = ({
               </Info>
             </InfoContainer>
             <Overview>{result.overview}</Overview>
-            <VideoCreateBtn
-              onClick={handleClick}
-            >{`Preview ${isPreview}`}</VideoCreateBtn>
+            <VideoTab onClick={handleClick}>{`Preview ${isPreview}`}</VideoTab>
             {isPreview ? (
               <Video video={result.videos.results} />
             ) : (
-              <Message color="#fff" text={`기타 정보 렌더링하기`} />
+              <DetailInfo Data={result} isMovie={isMovie} />
             )}
           </Data>
         </Content>
@@ -164,6 +164,7 @@ DetailPresenter.propTypes = {
   loading: PropTypes.bool.isRequired,
   handleClick: PropTypes.func.isRequired,
   isPreview: PropTypes.bool.isRequired,
+  isMovie: PropTypes.bool.isRequired,
 };
 
 export default DetailPresenter;

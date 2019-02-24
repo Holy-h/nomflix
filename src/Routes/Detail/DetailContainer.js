@@ -13,7 +13,7 @@ export default class extends React.Component {
       error: null,
       loading: true,
       isMovie: pathname.includes("/movie/"),
-      isPreview: true,
+      isPreview: false,
     };
   }
 
@@ -55,7 +55,7 @@ export default class extends React.Component {
   }
 
   render() {
-    const { result, error, loading, isPreview } = this.state;
+    const { result, error, loading, isPreview, isMovie } = this.state;
 
     return (
       <DetailPresenter
@@ -64,6 +64,7 @@ export default class extends React.Component {
         loading={loading}
         handleClick={this.handleClick}
         isPreview={isPreview}
+        isMovie={isMovie}
       />
     );
   }
