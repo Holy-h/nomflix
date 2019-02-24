@@ -75,7 +75,13 @@ const Overview = styled.p`
 
 const VideoCreateBtn = styled.button``;
 
-const DetailPresenter = ({ result, error, loading }) => (
+const DetailPresenter = ({
+  result,
+  error,
+  loading,
+  handleClick,
+  isPreview,
+}) => (
   <>
     <Helmet>
       <title>Loading | Nomflix</title>
@@ -137,8 +143,14 @@ const DetailPresenter = ({ result, error, loading }) => (
               </Info>
             </InfoContainer>
             <Overview>{result.overview}</Overview>
-            <VideoCreateBtn>예고편</VideoCreateBtn>
-            <Video video={result.videos.results} />
+            <VideoCreateBtn
+              onClick={handleClick}
+            >{`Preview ${isPreview}`}</VideoCreateBtn>
+            {isPreview ? (
+              <Video video={result.videos.results} />
+            ) : (
+              <Message color="#fff" text={`기타 정보 렌더링하기`} />
+            )}
           </Data>
         </Content>
       </Container>
@@ -150,6 +162,8 @@ DetailPresenter.propTypes = {
   result: PropTypes.object,
   error: PropTypes.string,
   loading: PropTypes.bool.isRequired,
+  handleClick: PropTypes.func.isRequired,
+  isPreview: PropTypes.bool.isRequired,
 };
 
 export default DetailPresenter;

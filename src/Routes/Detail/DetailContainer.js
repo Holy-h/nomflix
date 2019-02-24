@@ -13,8 +13,16 @@ export default class extends React.Component {
       error: null,
       loading: true,
       isMovie: pathname.includes("/movie/"),
+      isPreview: true,
     };
   }
+
+  handleClick = e => {
+    e.preventDefault();
+    this.setState(prevState => ({
+      isPreview: !prevState.isPreview,
+    }));
+  };
 
   async componentDidMount() {
     const {
@@ -47,8 +55,16 @@ export default class extends React.Component {
   }
 
   render() {
-    const { result, error, loading } = this.state;
+    const { result, error, loading, isPreview } = this.state;
 
-    return <DetailPresenter result={result} error={error} loading={loading} />;
+    return (
+      <DetailPresenter
+        result={result}
+        error={error}
+        loading={loading}
+        handleClick={this.handleClick}
+        isPreview={isPreview}
+      />
+    );
   }
 }
