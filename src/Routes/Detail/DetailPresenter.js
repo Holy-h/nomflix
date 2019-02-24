@@ -73,6 +73,8 @@ const Overview = styled.p`
   margin-bottom: 40px;
 `;
 
+const VideoCreateBtn = styled.button``;
+
 const DetailPresenter = ({ result, error, loading }) => (
   <>
     <Helmet>
@@ -135,6 +137,7 @@ const DetailPresenter = ({ result, error, loading }) => (
               </Info>
             </InfoContainer>
             <Overview>{result.overview}</Overview>
+            <VideoCreateBtn>예고편</VideoCreateBtn>
             <Video video={result.videos.results} />
           </Data>
         </Content>

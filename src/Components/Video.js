@@ -1,10 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import Message from "./Message";
 
 const Container = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: ${props => (props.video ? "1fr" : "1fr 1fr")};
+  /* grid-template-columns: ${props =>
+    props.video.length ? "1fr" : "1fr 1fr"}; */
   grid-gap: 20px;
 `;
 
@@ -14,7 +17,7 @@ const VideoContainer = styled.div`
 `;
 
 const VideoTitle = styled.span`
-  margin-bottom: 16px;
+  margin-bottom: 8px;
 `;
 
 const Videodiv = styled.div`
@@ -36,6 +39,7 @@ const VideoPlayer = styled.iframe`
 
 const Video = ({ video }) => (
   <Container>
+    {console.log(video.length)}
     {video &&
       video.map(item => (
         <VideoContainer key={item.key}>
@@ -48,6 +52,9 @@ const Video = ({ video }) => (
           </Videodiv>
         </VideoContainer>
       ))}
+    {video.length === 0 && (
+      <Message color="#B7C1F5" text={`예고편이 없습니다`} />
+    )}
   </Container>
 );
 
