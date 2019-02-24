@@ -37,7 +37,6 @@ const VideoPlayer = styled.iframe`
 
 const Video = ({ video }) => (
   <Container>
-    {console.log(video.length)}
     {video &&
       video.map(item => (
         <VideoContainer key={item.key}>
@@ -50,7 +49,7 @@ const Video = ({ video }) => (
           </Videodiv>
         </VideoContainer>
       ))}
-    {video.length < 1 && <Message text={`예고편이 없습니다`} />}
+    {video.length < 1 && <Message color="#fff" text={`예고편이 없습니다`} />}
   </Container>
 );
 
