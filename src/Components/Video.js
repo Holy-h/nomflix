@@ -15,7 +15,7 @@ const VideoContainer = styled.div`
 `;
 
 const VideoTitle = styled.span`
-  margin-bottom: 16px;
+  margin-bottom: 8px;
 `;
 
 const Videodiv = styled.div`
@@ -37,6 +37,7 @@ const VideoPlayer = styled.iframe`
 
 const Video = ({ video }) => (
   <Container>
+    {console.log(video.length)}
     {video &&
       video.map(item => (
         <VideoContainer key={item.key}>
