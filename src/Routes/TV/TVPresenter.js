@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import styled from "styled-components";
 import Helmet from "react-helmet";
 import Section from "Components/Section";
@@ -7,82 +6,93 @@ import Loader from "Components/Loader";
 import Message from "../../Components/Message";
 import Poster from "../../Components/Poster";
 
+// graphql 연결
+import { Query } from "react-apollo";
+import { TV_HOME } from "../../graphql/queries";
+
 const Container = styled.div`
   padding: 16px;
 `;
 
-const TVPresenter = ({ airingToday, topRated, popular, error, loading }) => (
+const TVPresenter = () => (
   <>
     <Helmet>
       <title>TV Shows | Nomflix</title>
     </Helmet>
-    {loading ? (
-      <Loader />
-    ) : (
-      <Container>
-        {airingToday && airingToday.length > 0 && (
-          <Section title="Airing Today">
-            {airingToday.map(show => (
-              <Poster
-                key={show.id}
-                id={show.id}
-                imageUrl={show.poster_path}
-                title={show.original_name}
-                rating={show.vote_average}
-                year={
-                  show.first_air_date && show.first_air_date.substring(0, 4)
-                }
-                isMovie={false}
-              />
-            ))}
-          </Section>
-        )}
-        {popular && popular.length > 0 && (
-          <Section title="Popular Shows">
-            {popular.map(show => (
-              <Poster
-                key={show.id}
-                id={show.id}
-                imageUrl={show.poster_path}
-                title={show.original_name}
-                rating={show.vote_average}
-                year={
-                  show.first_air_date && show.first_air_date.substring(0, 4)
-                }
-                isMovie={false}
-              />
-            ))}
-          </Section>
-        )}
-        {topRated && topRated.length > 0 && (
-          <Section title="TopRated Shows">
-            {topRated.map(show => (
-              <Poster
-                key={show.id}
-                id={show.id}
-                imageUrl={show.poster_path}
-                title={show.original_name}
-                rating={show.vote_average}
-                year={
-                  show.first_air_date && show.first_air_date.substring(0, 4)
-                }
-                isMovie={false}
-              />
-            ))}
-          </Section>
-        )}
-        {error && <Message color="#e30000" text={error} />}
-      </Container>
-    )}
+    <Container>
+      <Query query={TV_HOME}>
+        {({ loading, data, error }) => {
+          if (loading) return <Loader />;
+          if (error) return <Message color="#e30000" text={error} />;
+          return (
+            <div>
+              {/* {console.log(data)} */}
+              <Section title="Airing Today">
+                {data.tv_airingtoday.map(tv => (
+                  <Poster
+                    key={tv.id}
+                    id={tv.id}
+                    imageUrl={tv.poster_path}
+                    title={tv.original_name}
+                    rating={tv.vote_average}
+                    year={
+                      tv.first_air_date && tv.first_air_date.substring(0, 4)
+                    }
+                    isMovie={false}
+                  />
+                ))}
+              </Section>
+              <Section title="Popular TVshows">
+                {data.tv_popular.map(tv => (
+                  <Poster
+                    key={tv.id}
+                    id={tv.id}
+                    imageUrl={tv.poster_path}
+                    title={tv.original_name}
+                    rating={tv.vote_average}
+                    year={
+                      tv.first_air_date && tv.first_air_date.substring(0, 4)
+                    }
+                    isMovie={false}
+                  />
+                ))}
+              </Section>
+              <Section title="TopRated Shows">
+                {data.tv_toprated.map(tv => (
+                  <Poster
+                    key={tv.id}
+                    id={tv.id}
+                    imageUrl={tv.poster_path}
+                    title={tv.original_name}
+                    rating={tv.vote_average}
+                    year={
+                      tv.first_air_date && tv.first_air_date.substring(0, 4)
+                    }
+                    isMovie={false}
+                  />
+                ))}
+              </Section>
+              <Section title="On the air">
+                {data.tv_ontheair.map(tv => (
+                  <Poster
+                    key={tv.id}
+                    id={tv.id}
+                    imageUrl={tv.poster_path}
+                    title={tv.original_name}
+                    rating={tv.vote_average}
+                    year={
+                      tv.first_air_date && tv.first_air_date.substring(0, 4)
+                    }
+                    isMovie={false}
+                  />
+                ))}
+              </Section>
+            </div>
+          );
+        }}
+      </Query>
+    </Container>
   </>
 );
-
-TVPresenter.propTypes = {
-  airingToday: PropTypes.array,
-  topRated: PropTypes.array,
-  popular: PropTypes.array,
-  error: PropTypes.string,
-  loading: PropTypes.bool.isRequired,
-};
 
 export default TVPresenter;
