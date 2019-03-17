@@ -7,6 +7,10 @@ import Message from "../../Components/Message";
 import Video from "../../Components/Video";
 import DetailInfo from "../../Components/DetailInfo";
 
+// graphql 연결
+import { Query } from "react-apollo";
+import { Movie_Detail, TV_Detail } from "../../graphql/queries";
+
 const Container = styled.div`
   height: calc(100vh - 50px);
   width: 100%;
@@ -76,96 +80,118 @@ const Overview = styled.p`
 
 const VideoTab = styled.button``;
 
-const DetailPresenter = ({
-  result,
-  error,
-  loading,
-  handleClick,
-  isPreview,
-  isMovie,
-}) => (
+const DetailPresenter = ({ handleClick, isPreview, isMovie, id }) => (
   <>
     <Helmet>
       <title>Loading | Nomflix</title>
     </Helmet>
-    {loading ? (
-      <Loader />
-    ) : error ? (
-      <Message color="e30000" text={error} />
-    ) : (
-      <Container>
-        <Helmet>
-          <title>
-            {result.original_title
-              ? result.original_title
-              : result.original_name}{" "}
-            | Nomflix
-          </title>
-        </Helmet>
-        <Backdrop
-          bgImage={`https://image.tmdb.org/t/p/original${result.backdrop_path}`}
-        />
-        <Content>
-          <Cover
-            bgImage={
-              result.poster_path
-                ? `https://image.tmdb.org/t/p/w500${result.poster_path}`
-                : require("../../assets/noPosterSmall.png")
-            }
-          />
-          <Data>
-            <Title>
-              {result.original_title
-                ? result.original_title
-                : result.original_name}
-            </Title>
-            <InfoContainer>
-              <Info>
-                {result.release_date
-                  ? `${result.release_date.substring(0, 4)} ⦁ `
-                  : result.seasons.map((item, index) =>
-                      index !== result.seasons.length - 1 && item.air_date
-                        ? `${item.air_date.substring(0, 4)} ⦁ `
-                        : null,
-                    )}
-              </Info>
-              <Info>
-                {result.runtime ? result.runtime : result.episode_run_time[0]}{" "}
-                min
-              </Info>
-              <Divider>⦁</Divider>
-              <Info>
-                {result.genres &&
-                  result.genres.map((item, index) =>
-                    index !== result.genres.length - 1
-                      ? `${item.name} / `
-                      : item.name,
-                  )}
-              </Info>
-            </InfoContainer>
-            <Overview>{result.overview}</Overview>
-            <VideoTab onClick={handleClick}>
-              {isPreview ? `상세정보` : `예고편`}
-            </VideoTab>
-            {isPreview ? (
-              <Video video={result.videos.results} />
-            ) : (
-              <DetailInfo Data={result} isMovie={isMovie} />
-            )}
-          </Data>
-        </Content>
-      </Container>
-    )}
+    <Query query={isMovie ? Movie_Detail : TV_Detail} variables={{ id }}>
+      {({ loading, data, error }) => {
+        if (loading) return <Loader />;
+        if (error) return <Message color="e30000" text={error} />;
+        return (
+          <Container>
+            {console.log(data)}
+            <Helmet>
+              <title>
+                {isMovie
+                  ? data.movie_detail.title
+                  : data.tv_detail.original_name}
+                | Nomflix
+              </title>
+            </Helmet>
+            <Backdrop
+              bgImage={
+                isMovie
+                  ? `https://image.tmdb.org/t/p/original${
+                      data.movie_detail.backdrop_path
+                    }`
+                  : `https://image.tmdb.org/t/p/original${
+                      data.tv_detail.backdrop_path
+                    }`
+              }
+            />
+            <Content>
+              <Cover
+                bgImage={
+                  isMovie
+                    ? `https://image.tmdb.org/t/p/original${
+                        data.movie_detail.poster_path
+                      }`
+                    : `https://image.tmdb.org/t/p/original${
+                        data.tv_detail.poster_path
+                      }`
+                }
+              />
+              {/*Cover 이미지가 없을때는?*/}
+              <Data>
+                <Title>
+                  {isMovie
+                    ? data.movie_detail.title
+                    : data.tv_detail.original_name}
+                </Title>
+                <InfoContainer>
+                  <Info>
+                    {isMovie
+                      ? `${data.movie_detail.release_date.substring(0, 4)} ⦁ `
+                      : data.tv_detail.seasons.map((item, index) =>
+                          index !== data.tv_detail.seasons.length - 1 &&
+                          item.air_date
+                            ? `${item.air_date.substring(0, 4)} ⦁ `
+                            : null,
+                        )}
+                  </Info>
+                  <Info>
+                    {isMovie
+                      ? data.movie_detail.runtime
+                      : data.tv_detail.episode_run_time[0]}
+                    min
+                  </Info>
+                  <Divider>⦁</Divider>
+                  <Info>
+                    {isMovie
+                      ? data.movie_detail.genres.map((item, index) =>
+                          index !== data.movie_detail.genres.length - 1
+                            ? `${item.name} / `
+                            : item.name,
+                        )
+                      : data.tv_detail.genres.map((item, index) =>
+                          index !== data.tv_detail.genres.length - 1
+                            ? `${item.name} / `
+                            : item.name,
+                        )}
+                  </Info>
+                </InfoContainer>
+                <Overview>
+                  {isMovie
+                    ? data.movie_detail.overview
+                    : data.tv_detail.overview}
+                </Overview>
+                <VideoTab onClick={handleClick}>
+                  {isPreview ? `상세정보` : `예고편`}
+                </VideoTab>
+                {isPreview ? (
+                  <Video video={isMovie ? data.movie_videos : data.tv_videos} />
+                ) : (
+                  <DetailInfo
+                    Data={isMovie ? data.movie_detail : data.tv_detail}
+                    isMovie={isMovie}
+                  />
+                )}
+              </Data>
+            </Content>
+          </Container>
+        );
+      }}
+    </Query>
   </>
 );
 
 DetailPresenter.propTypes = {
-  result: PropTypes.object,
-  error: PropTypes.string,
-  loading: PropTypes.bool.isRequired,
   handleClick: PropTypes.func.isRequired,
   isPreview: PropTypes.bool.isRequired,
   isMovie: PropTypes.bool.isRequired,
+  id: PropTypes.number.isRequired,
 };
 
 export default DetailPresenter;
